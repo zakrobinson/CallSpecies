@@ -1,2 +1,2 @@
 # CallSpecies
-A python script to make species calls based on multilocus genotypes of species-informative markers.
+A python script for species indentification based on multilocus genotypes of species-informative markers.
