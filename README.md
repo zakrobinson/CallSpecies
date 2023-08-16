@@ -1,7 +1,10 @@
 # CallSpecies.py
 A python script for species indentification based on multilocus genotypes of species-informative markers.\
-<b>Author:</b> Zak Robinson and Jeff Stephenson; Robinson et al. 2023 <i>In Review</i> \
-<b>Contact:</b> zrobinson@critfc.org 
+<b>Authors:</b> Zak Robinson and Jeff Stephenson; Robinson et al. 2023 <i>In Review</i> \
+<b>Contact:</b> zrobinson@critfc.org
+
+This script was written to fit seemlessly into existing GTseq genotyping pipelines \(e.g., <https://github.com/zakrobinson/GTseq-pipeline>\).
+Please feel free to reach out if you would like assistance modifying these to better fit your work flow. 
 
 ## Quick Start: Example Run 
 
