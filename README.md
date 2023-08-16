@@ -1,6 +1,6 @@
 # CallSpecies.py
 A python script for species indentification based on multilocus genotypes of species-informative markers.\
-<b>Author:</b> Zak Robinson; Robinson et al. 2023 <i>In Review</i> \
+<b>Author:</b> Zak Robinson and Jeff Stephenson; Robinson et al. 2023 <i>In Review</i> \
 <b>Contact:</b> zrobinson@critfc.org 
 
 ## Quick Start: Example Run 
