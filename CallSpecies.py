@@ -7,6 +7,7 @@
 
 
 import argparse 
+import copy
 des="Add species calls to GenoCompile.pl derived genotype file\n"
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Add species calls to GenoCompile_v5.1.py derived genotype file",usage="%(prog)s --SpeciesSeq --inGENO --outGENO [--buffMP] [--pruneMP] [--colSTRT] [--outScoreMat] [--outRepGeno] [-h --help]",add_help=True)
@@ -36,7 +37,7 @@ if __name__ == '__main__':
 def scoreInd(ind_Gdict):
   global SpeciesScore_Dict
   global SpeciesSeq_dict
-  ind_score=SpeciesScore_Dict.copy() # create a copy the species score dictionary for scoring a single individual
+  ind_score=copy.deepcopy(SpeciesScore_Dict) # create a copy the species score dictionary for scoring a single individual
   ind_hetCount=0 # initiate a count of heterozygotes at zero. Reported as a coarse index of potential hybridity or contamination. 
   nloc = 0
   for loc in ind_Gdict.keys():
@@ -70,7 +71,7 @@ def scoreInd(ind_Gdict):
 def max_score_missing(ind_Gdict):
   global SpeciesScore_Dict
   global SpeciesSeq_dict
-  mSMiss_dict=SpeciesScore_Dict.copy() # Create an empty score card
+  mSMiss_dict=copy.deepcopy(SpeciesScore_Dict) # Create an empty score card
   for loc in SpeciesSeq_dict.keys():
     if loc not in ind_Gdict.keys():
       continue
@@ -107,7 +108,7 @@ SpeciesScore_Dict={spec:0 for spec in speciesConsidered} # generic species scori
 #
 ############# Calculate Absolute Maximum Possible Score per Species #######################
 # Max score defined by SpeciesSeq file
-absolute_maxS_dict=SpeciesScore_Dict.copy()
+absolute_maxS_dict=copy.deepcopy(SpeciesScore_Dict)
 for loc in SpeciesSeq_dict.keys():
   loc_specs=SpeciesSeq_dict[loc][2].split(";")
   loc_specs.extend(SpeciesSeq_dict[loc][3].split(";"))
@@ -205,7 +206,7 @@ for line in Prog90:     # header line is already read in
       species_call="ReviewHET;"+species_call
   else:
     maxscoreREL=max([v for (k,v) in ind_perRELMAX.items() if ind_perABSMAX[k]>=args.thresMS]) # maximum relative score among all species for an individual line (given missing data and hets); given the --thresMS is achieved.
-    species_call=[k for k in ind_perRELMAX.keys() if ind_perRELMAX[k]>(maxscoreREL-args.buffMP)] # all canididates with max score are reported in list. Note the offset, it avoid issues with float comparisons and permits approximate ties.
+    species_call=[k for k in ind_perRELMAX.keys() if ind_perRELMAX[k]>=(maxscoreREL-args.buffMP)] # all canididates with max score are reported in list. Note the offset, it avoid issues with float comparisons and permits approximate ties.
     if args.pruneMS:
       species_call=[spec for spec in species_call if ind_perABSMAX[spec]>=args.pruneMS] # The species called must achieve the --pruneMP max absolute score.
       species_call=["NoCall"] if not species_call else species_call # If none pass --thresMS, its a NoCall
