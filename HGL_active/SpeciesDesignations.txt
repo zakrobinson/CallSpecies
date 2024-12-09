@@ -1,0 +1,7 @@
+All species designations are the first letter of genus name and first two letters of species name. e.g., Str - Salmo trutta
+
+The cutthroat designations should be used as initial screening tool only, but :
+Ocl1a – Appears to be coastal cutthroat
+Ocl1b - Appears to be westslope cutthroat
+Ocl2 - Appears to be Great Basin (sub-)species Yellowstone, Bonneville, etc. 
+
